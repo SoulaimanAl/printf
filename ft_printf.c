@@ -6,11 +6,11 @@
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:05:02 by soulaimane        #+#    #+#             */
-/*   Updated: 2024/11/14 11:35:34 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:03:26 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	sett(t_flags *flag)
 {
@@ -23,79 +23,90 @@ void	sett(t_flags *flag)
 	flag->width = 0;
 }
 
-int	print(char *c, char *s)
+int	print_res(char *c, char *s)
 {
 	int	i;
 
 	i = 0;
 	while (c <= s)
 	{
-		i += write(1, c, 1);
+		i += ft_print(*c);
 		c++;
 	}
 	return (i);
 }
-int	call_function(va_list arg, char s, t_flags *flag)
+
+int	call_function(va_list arg, char *p, char *s, t_flags *flag)
 {
 	int	count;
 
 	count = 0;
-	if (s == 's' || s == 'c')
-		count += print_string(arg, s, flag);
-	else if (s == 'd' || s == 'i')
-		count += print_integer(arg, s, flag);
-	else if (s == 'u')
-		count += print_unsigned(arg, s, flag);
-	else if (s == 'x' || s == 'X')
-		count += print_hex(arg, s, flag);
-	else if (s == 'p')
-		count += print_add(arg, s, flag);
-	else if (s == '%')
-		count += write(1, "%", 1);
+	if (*s == 's' || *s == 'c')
+		count += print_string(arg, *s, flag);
+	else if (*s == 'd' || *s == 'i')
+		count += print_integer(arg, flag);
+	else if (*s == 'u')
+		count += print_unsigned(arg, flag);
+	else if (*s == 'x' || *s == 'X')
+		count += print_hex(arg, *s, flag);
+	else if (*s == 'p')
+		count += print_add(arg, *s, flag);
+	else if (*s == '%')
+		count += ft_print('%');
 	else
-		return (-1);
+		count += print_res(p, s);
 	return (count);
 }
-int	ft_printf(const char *s, ...)
-{
-	va_list arg;
-	char 	*p;
-	int 	count;
-	int		check;
-	t_flags *flag;
 
-	if (s == NULL || s[0] == '\0' || (s[0] == '%' && s[1] == '\0'))
-		return (0);
+int	help_printf(va_list arg, char *s, char *p, t_flags *flag)
+{
+	int	count;
+
 	count = 0;
-	check = 0;
-	va_start(arg, s);
-	flag = malloc(sizeof(t_flags));
-	if (flag == NULL)
-		return (-1);
 	while (*s != '\0')
 	{
 		sett(flag);
 		if (*s != '%')
-			count += write(1, s, 1);
+			count += ft_print(*s);
 		else
 		{
 			s++;
 			p = (char *)s;
 			if (*s == '\0')
-				return (count);
+			{
+				return (free(flag), count);
+			}
 			while (get_flag((char *)s, flag))
 				s++;
-			s = get_width(arg, (char *)s, flag);
-			s = get_precision(arg, (char *)s, flag);
-			check = call_function(arg, (char)*s, flag);
-			if (check == -1)
-				count += print(p, (char *)s);
-			else
-				count += check;
+			s = get_width((char *)s, flag);
+			s = get_precision((char *)s, flag);
+			count += call_function(arg, p, (char *)s, flag);
 		}
 		s++;
 	}
+	return (count);
+}
+
+int	ft_printf(const char *s, ...)
+{
+	va_list	arg;
+	char	*p;
+	int		count;
+	t_flags	*flag;
+
+	if (s == NULL || (s[0] == '%' && s[1] == '\0'))
+		return (-1);
+	count = 0;
+	ft_error(1);
+	va_start(arg, s);
+	flag = malloc(sizeof(t_flags));
+	if (flag == NULL)
+		return (-1);
+	p = NULL;
+	count += help_printf(arg, (char *)s, p, flag);
 	va_end(arg);
 	free(flag);
+	if (ft_error(0) == -1)
+		return (-1);
 	return (count);
 }
