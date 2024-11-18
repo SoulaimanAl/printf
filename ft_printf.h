@@ -37,6 +37,7 @@ char				*get_string(va_list arg);
 int					help_others_flag(char *s, int i, int sign, t_flags *flag);
 char				*get_charcter(va_list arg);
 int					ft_isdigit(int c);
+int					print_res(char s, t_flags *flag);
 void				ft_itoa_static2(long n, char *buffer);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *s1);

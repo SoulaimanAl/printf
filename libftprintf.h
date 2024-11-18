@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: soulaimane <soulaimane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:12:46 by soulaimane        #+#    #+#             */
-/*   Updated: 2024/11/14 08:56:34 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:47:04 by soulaimane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ typedef struct flags
 
 int					ft_printf(const char *s, ...);
 int					ft_atoi(const char *str);
-char				*ft_itoa1(int n);
 int					ft_isdigit(int c);
-char				*ft_itoa(long n);
+int					print_res(char s, t_flags *flag);
 size_t				ft_strlen(const char *str);
 int					print_add(va_list arg, char p, t_flags *flag);
 int					print_hex(va_list arg, char p, t_flags *flag);

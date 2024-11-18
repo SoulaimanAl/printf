@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: soulaimane <soulaimane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:05:02 by soulaimane        #+#    #+#             */
-/*   Updated: 2024/11/17 16:03:26 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:08:00 by soulaimane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sett(t_flags *flag)
 	flag->width = 0;
 }
 
-int	print_res(char *c, char *s)
+/*int	print_res(char *c, char *s)
 {
 	int	i;
 
@@ -34,9 +34,9 @@ int	print_res(char *c, char *s)
 		c++;
 	}
 	return (i);
-}
+}*/
 
-int	call_function(va_list arg, char *p, char *s, t_flags *flag)
+int	call_function(va_list arg, char *s, t_flags *flag)
 {
 	int	count;
 
@@ -51,14 +51,12 @@ int	call_function(va_list arg, char *p, char *s, t_flags *flag)
 		count += print_hex(arg, *s, flag);
 	else if (*s == 'p')
 		count += print_add(arg, *s, flag);
-	else if (*s == '%')
-		count += ft_print('%');
 	else
-		count += print_res(p, s);
+		count += print_res(*s, flag);
 	return (count);
 }
 
-int	help_printf(va_list arg, char *s, char *p, t_flags *flag)
+int	help_printf(va_list arg, char *s, t_flags *flag)
 {
 	int	count;
 
@@ -71,7 +69,6 @@ int	help_printf(va_list arg, char *s, char *p, t_flags *flag)
 		else
 		{
 			s++;
-			p = (char *)s;
 			if (*s == '\0')
 			{
 				return (free(flag), count);
@@ -80,7 +77,7 @@ int	help_printf(va_list arg, char *s, char *p, t_flags *flag)
 				s++;
 			s = get_width((char *)s, flag);
 			s = get_precision((char *)s, flag);
-			count += call_function(arg, p, (char *)s, flag);
+			count += call_function(arg, (char *)s, flag);
 		}
 		s++;
 	}
@@ -90,7 +87,6 @@ int	help_printf(va_list arg, char *s, char *p, t_flags *flag)
 int	ft_printf(const char *s, ...)
 {
 	va_list	arg;
-	char	*p;
 	int		count;
 	t_flags	*flag;
 
@@ -102,8 +98,7 @@ int	ft_printf(const char *s, ...)
 	flag = malloc(sizeof(t_flags));
 	if (flag == NULL)
 		return (-1);
-	p = NULL;
-	count += help_printf(arg, (char *)s, p, flag);
+	count += help_printf(arg, (char *)s, flag);
 	va_end(arg);
 	free(flag);
 	if (ft_error(0) == -1)
