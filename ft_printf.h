@@ -24,6 +24,8 @@ typedef struct flags
 	int				plus_flag;
 	int				zero_flag;
 	int				space_flag;
+	int				hex_flag;
+	int				sign_flag;
 
 	unsigned int	precision;
 	int				width;
@@ -40,7 +42,6 @@ int					ft_isdigit(int c);
 int					print_res(char s, t_flags *flag);
 void				ft_itoa_static2(long n, char *buffer);
 size_t				ft_strlen(const char *str);
-char				*ft_strdup(const char *s1);
 int					print_add(va_list arg, char p, t_flags *flag);
 int					print_hex(va_list arg, char p, t_flags *flag);
 int					print_string(va_list arg, char p, t_flags *flag);
@@ -51,5 +52,11 @@ char				*get_width(char *s, t_flags *flag);
 char				*get_precision(char *s, t_flags *flag);
 int					counter_add(unsigned long long n);
 void				ft_get_add(unsigned long long count, char *s, char p);
+int					help_handle_others_hex(char *s, int i, int zero,
+						t_flags *flag);
+int					help_to_print_hex(char *s, int count, int zero,
+						t_flags *flag);
+int					help_to_print_int(char *s, int count, int sign,
+						t_flags *flag);
 
 #endif
