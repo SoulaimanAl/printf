@@ -6,13 +6,13 @@
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:04:00 by salahian          #+#    #+#             */
-/*   Updated: 2024/11/19 18:10:42 by soulaiman        ###   ########.fr       */
+/*   Updated: 2024/11/19 19:07:45 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	help_others_flag(char *s, int i, int sign, t_flags *flag)
+int	help_others_flag(int i, int sign, t_flags *flag)
 {
 	int	sum;
 
@@ -40,7 +40,7 @@ int	help_others_flag(char *s, int i, int sign, t_flags *flag)
 	return (sum);
 }
 
-int	help_to_print_int(char *s, int count, int sign, t_flags *flag)
+int	help_to_print_int(int count, int sign, t_flags *flag)
 {
 	int	sum;
 

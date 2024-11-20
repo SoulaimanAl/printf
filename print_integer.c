@@ -6,7 +6,7 @@
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:00:42 by salahian          #+#    #+#             */
-/*   Updated: 2024/11/19 18:00:45 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:06:50 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	handle_others_flag(char *s, int count, int sign, t_flags *flag)
 	if (flag->precision != (unsigned int)-1
 		&& flag->precision >= (unsigned int)count)
 		i = i - ((int)flag->precision - count) - sign;
-	sum += help_to_print_int(s, count, sign, flag);
-	sum += help_others_flag(s, i, sign, flag);
+	sum += help_to_print_int(count, sign, flag);
+	sum += help_others_flag(i, sign, flag);
 	sum += help_to_print(s, count, sign, flag);
 	return (sum);
 }

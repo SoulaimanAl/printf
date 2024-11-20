@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sources3_bonus.c                                   :+:      :+:    :+:   */
+/*   sources1_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:20:48 by salahian          #+#    #+#             */
-/*   Updated: 2024/11/19 17:57:41 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:06:30 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	help_others_flag(char *s, int i, int sign, t_flags *flag)
+int	help_others_flag(int i, int sign, t_flags *flag)
 {
 	int	sum;
 
@@ -40,7 +40,7 @@ int	help_others_flag(char *s, int i, int sign, t_flags *flag)
 	return (sum);
 }
 
-int	help_to_print_int(char *s, int count, int sign, t_flags *flag)
+int	help_to_print_int(int count, int sign, t_flags *flag)
 {
 	int	sum;
 

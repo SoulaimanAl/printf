@@ -6,7 +6,7 @@
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:24:24 by salahian          #+#    #+#             */
-/*   Updated: 2024/11/19 17:39:41 by salahian         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:05:46 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	handle_others_flag_hex(char *s, int count, int zero, t_flags *flag)
 		i -= 2;
 	if ((zero == 1 && flag->precision == 0))
 		i++;
-	if (flag->hashtag_flag && zero != 1 && flag->precision == -1
+	if (flag->hashtag_flag && zero != 1 && flag->precision == (unsigned int)-1
 		&& flag->zero_flag)
 	{
 		sum += ft_print('0');

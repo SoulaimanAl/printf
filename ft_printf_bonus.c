@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salahian <salahian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 13:05:02 by soulaimane        #+#    #+#             */
-/*   Updated: 2024/11/19 17:35:15 by salahian         ###   ########.fr       */
+/*   Created: 2024/11/09 13:05:02 by salahian          #+#    #+#             */
+/*   Updated: 2024/11/19 18:34:14 by salahian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	sett(t_flags *flag)
 	flag->plus_flag = 0;
 	flag->zero_flag = 0;
 	flag->space_flag = 0;
+	flag->hex_flag = 0;
+	flag->sign_flag = 0;
 	flag->precision = (unsigned int)-1;
 	flag->width = 0;
 }
